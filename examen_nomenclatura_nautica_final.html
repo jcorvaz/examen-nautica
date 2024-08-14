@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Nomenclatura Náutica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            display: none;
+        }
+        .container.active {
+            display: block;
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .answers {
+            list-style-type: none;
+            padding: 0;
+        }
+        .answers li {
+            margin-bottom: 10px;
+        }
+        .answers button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .answers button.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .answers button.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        #result {
+            font-size: 1.4em;
+            margin-top: 20px;
+        }
+        #footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #999;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <script>
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+
+        function showNextQuestion() {
+            const containers = document.querySelectorAll('.container');
+            containers.forEach(container => container.classList.remove('active'));
+            if (currentQuestion < containers.length - 1) {
+                containers[currentQuestion].classList.add('active');
+            } else {
+                document.getElementById('result').innerText = `Has acertado ${correctAnswers} de ${containers.length - 1} preguntas.`;
+                document.getElementById('result-container').classList.add('active');
+            }
+        }
+
+        function checkAnswer(button, isCorrect) {
+            if (isCorrect) {
+                button.classList.add('correct');
+                correctAnswers++;
+            } else {
+                button.classList.add('incorrect');
+            }
+            setTimeout(() => {
+                currentQuestion++;
+                showNextQuestion();
+            }, 1000);
+        }
+
+        window.onload = showNextQuestion;
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="question">¿Qué parte de la embarcación se denomina 'babor'?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">El mástil principal de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">El lado derecho de la embarcación mirando hacia proa.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La parte trasera de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">El lado izquierdo de la embarcación mirando hacia proa.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Qué significa el término 'calado' en una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">La distancia desde babor hasta estribor.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La altura desde la quilla hasta el tope del mástil.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La distancia desde la proa hasta la popa.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">La profundidad desde la quilla hasta la línea de flotación.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Cómo se denomina la parte más ancha de una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, true)">Manga.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Babor.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Estribor.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Eslora.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Qué es la 'obra muerta' de una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, true)">La parte de la embarcación que se encuentra sobre la línea de flotación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La parte de la embarcación que se encuentra sumergida.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">El sistema de gobierno de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La estructura interna de la embarcación.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Qué es la 'obra muerta' en una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">El conjunto de velas.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">El motor de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La parte que está sumergida.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">La parte que está sobre la línea de flotación.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Qué es la 'quilla' en una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">La parte que sostiene la vela mayor.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">El timón de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">El mástil principal.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">El elemento estructural en la parte inferior de la embarcación que corre a lo largo de su eje.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Qué instrumento se utiliza para medir la velocidad de una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">Sextante.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">Corredera.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Barómetro.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Anemómetro.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Cuál es la función del 'timón' en una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">Fijar el ancla al fondo marino.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Elevar y bajar las velas.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Controlar la velocidad de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">Gobernar la dirección de la embarcación.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Cómo se denomina la línea imaginaria que separa la obra viva de la obra muerta?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">Línea de crujía.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Línea de agua.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">Línea de flotación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Línea de deriva.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Qué nombre recibe la parte posterior de la embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">Babor.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Proa.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">Estribor.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">Popa.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">El término 'eslora' hace referencia a:</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">La anchura máxima de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La profundidad de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">La longitud máxima de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La altura del mástil.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Qué se denomina 'amura' en una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">El ángulo entre la proa y la línea de crujía.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">La parte de la embarcación entre la proa y el través.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">El ángulo entre la proa y la línea de flotación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La parte inferior del mástil.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Dónde se encuentra la 'proa' en una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">En la parte trasera.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">En la parte delantera.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">En la parte central.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">En el lado izquierdo.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">¿Qué se entiende por la 'obra viva' de una embarcación?</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, true)">La parte de la embarcación que se encuentra sumergida.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">El conjunto de cabos y velas.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La parte de la embarcación que se encuentra sobre la línea de flotación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La estructura interna de la embarcación.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="question">El término 'quilla' se refiere a:</div>
+        <ul class="answers">
+    
+            <li><button onclick="checkAnswer(this, false)">El casco de la embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">La vela mayor.</button></li>
+        
+            <li><button onclick="checkAnswer(this, false)">El mástil principal de una embarcación.</button></li>
+        
+            <li><button onclick="checkAnswer(this, true)">El elemento longitudinal que va de proa a popa y se encuentra en la parte inferior de la embarcación.</button></li>
+        
+        </ul>
+    </div>
+    
+    <div id="result-container" class="container">
+        <div id="result"></div>
+    </div>
+    <div id="footer">
+        Tanis y Jaime Cores
+    </div>
+</body>
+</html>
